@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="Coding">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      ReactNative实现点赞飘心动画 | 🖥
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+    
+<script src="/js/gitment.js"></script>
+
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+<meta name="generator" content="Hexo 5.1.1"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>🖥</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>ReactNative实现点赞飘心动画</h2>
+  <p class="post-date">2020-09-05</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>公司正在做直播项目,其中需要做一个类似YY,虎牙,斗鱼中的点赞飘心的动画.由于没有找到对应的库,就只能自己写一个了,目前采用的是ReactNative中的插值动画,其实实现起来也比较简单.上代码…..</p>
+<h4 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h4><p>在构造函数中声明多个用来驱动动画的Animate变量,以及一个用来做视图于动画匹配的变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">constructor(props) &#123;</span><br><span class="line">        super(props)</span><br><span class="line">        for (let i &#x3D; 0; i &lt; 10; i++) &#123;</span><br><span class="line">            this[&#96;HeartArg$&#123;i&#125;&#96;] &#x3D; new Animated.Value(0)</span><br><span class="line">        &#125;</span><br><span class="line">        this.viewNum &#x3D; 0</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h4><p>在render函数中使用循环声明多个View,我这里使用的是10个图片来进行动画的循环,其中要注意的是ref属性,这里是为了后续设置随机颜色而设置的变量,其中的top,right, transform, opacity都使用了插值函数,不过大家也可以通过这种方式实现对其他属性的操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;View&gt;</span><br><span class="line">        &#123;</span><br><span class="line">          Array(10).fill().map((_, index) &#x3D;&gt; &#123;</span><br><span class="line">                return &lt;Animated.Image</span><br><span class="line">                    key&#x3D;&#123;index&#125;</span><br><span class="line">                    ref&#x3D;&#123;_ &#x3D;&gt; this[&#96;animImg$&#123;index&#125;&#96;] &#x3D; _&#125;</span><br><span class="line">                    style&#x3D;&#123;[ChatRoomToolsSty.animImg, &#123;</span><br><span class="line">                        top: this[&#96;HeartArg$&#123;index&#125;&#96;].interpolate(&#123;</span><br><span class="line">                            inputRange: [0, 1, 2, 3],</span><br><span class="line">                            outputRange: [10, -100, -200, -300]</span><br><span class="line">                        &#125;),</span><br><span class="line">                        right: this[&#96;HeartArg$&#123;index&#125;&#96;].interpolate(&#123;</span><br><span class="line">                            inputRange: [0, 1, 2, 3],</span><br><span class="line">                            outputRange: Math.floor(Math.random() + 0.5) &#x3D;&#x3D;&#x3D; 0 ? [7, 30, 15, 7] : [7, 0, 30, 10]</span><br><span class="line">                        &#125;),</span><br><span class="line">                        transform: [&#123;</span><br><span class="line">                            scale: this[&#96;HeartArg$&#123;index&#125;&#96;].interpolate(&#123;</span><br><span class="line">                                inputRange: [0, 1, 2, 3],</span><br><span class="line">                                outputRange: [0.5, 1, 1.5, 1]</span><br><span class="line">                            &#125;)</span><br><span class="line">                        &#125;],</span><br><span class="line">                        opacity: this[&#96;HeartArg$&#123;index&#125;&#96;].interpolate(&#123;</span><br><span class="line">                            inputRange: [0, 1, 2, 3],</span><br><span class="line">                            outputRange: [0.5, 1, 0.5, 0]</span><br><span class="line">                        &#125;)</span><br><span class="line">                    &#125;]&#125;</span><br><span class="line">                    source&#x3D;&#123;Images.action4&#125;</span><br><span class="line">                &#x2F;&gt;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">&lt;&#x2F;View&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="第三步"><a href="#第三步" class="headerlink" title="第三步"></a>第三步</h4><p>声明一个用来驱动动画的函数,其中的随机颜色用到了上一步中的ref声明, COLOR_ARR这个常亮根据产品需求可以自己定义一个数组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">startAnimate &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">    this[&#96;HeartArg$&#123;this.viewNum&#125;&#96;].setValue(0)</span><br><span class="line">    &#x2F;&#x2F;设置随机颜色</span><br><span class="line">    let colorIndex &#x3D; Math.floor(Math.random() * 10)</span><br><span class="line">    this[&#96;animImg$&#123;this.viewNum&#125;&#96;].setNativeProps(&#123;</span><br><span class="line">        style: &#123;</span><br><span class="line">            tintColor: COLOR_ARR[colorIndex]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    &#x2F;&#x2F;根据当前动画驱动值进行判断是否对新VIEW进行驱动</span><br><span class="line">    let currentValue &#x3D; this[&#96;HeartArg$&#123;this.viewNum&#125;&#96;].__getValue()</span><br><span class="line">    if (currentValue !&#x3D;&#x3D; 0) &#123;</span><br><span class="line">        this.viewNum++</span><br><span class="line">    &#125;</span><br><span class="line">    Animated.timing(</span><br><span class="line">        this[&#96;HeartArg$&#123;this.viewNum&#125;&#96;],</span><br><span class="line">        &#123;</span><br><span class="line">            toValue: 3,</span><br><span class="line">            duration: 2000,</span><br><span class="line">            easing: Easing.linear</span><br><span class="line">        &#125;</span><br><span class="line">    ).start(() &#x3D;&gt; &#123;</span><br><span class="line">        this[&#96;HeartArg$&#123;this.viewNum&#125;&#96;].setValue(0)</span><br><span class="line">    &#125;)</span><br><span class="line">    &#x2F;&#x2F;如果当前正在驱动的VIEW的数量大于8,则重置回0,让动画循环</span><br><span class="line">    if (this.viewNum &gt; 8) &#123;</span><br><span class="line">        this.viewNum &#x3D; 0</span><br><span class="line">    &#125;</span><br><span class="line">    this.viewNum++</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>颜色数组可定义成下面这样👇</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const COLOR_ARR &#x3D; [</span><br><span class="line">    &#39;#9C89B8&#39;,</span><br><span class="line">    &#39;#F0A6CA&#39;,</span><br><span class="line">    &#39;#EFC3E6&#39;,</span><br><span class="line">    &#39;#F0E6EF&#39;,</span><br><span class="line">    &#39;#B8BEDD&#39;,</span><br><span class="line">    &#39;#5BC0EB&#39;,</span><br><span class="line">    &#39;#FDE74C&#39;,</span><br><span class="line">    &#39;#9BC53D&#39;,</span><br><span class="line">    &#39;#E55934&#39;,</span><br><span class="line">    &#39;#FA7921&#39;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h4 id="第四步"><a href="#第四步" class="headerlink" title="第四步"></a>第四步</h4><p>定义一个Btn按钮,开始吧😁</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;ChatRoomToolsActionBtn</span><br><span class="line">    source&#x3D;&#123;Images.action4&#125;</span><br><span class="line">    onPress&#x3D;&#123;() &#x3D;&gt; &#123;</span><br><span class="line">          this.startAnimate()</span><br><span class="line">             &#125;&#125;&#x2F;&gt;</span><br></pre></td></tr></table></figure>
+<h6 id="看成品"><a href="#看成品" class="headerlink" title="看成品"></a>看成品</h6><p><img src="https://upload-images.jianshu.io/upload_images/2004233-2fefacb419aa0f3e.gif?imageMogr2/auto-orient/strip"></p>
+<blockquote>
+<p>如果觉得这些内容对你有用,那点个赞再走吧❤️,欢迎转发,还请注明出处,谢谢</p>
+</blockquote>
+</section>
+    <!-- Tags START -->
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2020/09/05/React/">
+        <span class="nav-arrow">← </span>
+        
+          ReactNative实现网易云音乐登录波纹动画
+        
+      </a>
+    
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-nav-text">前言</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5"><span class="toc-nav-text">第一步</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5"><span class="toc-nav-text">第二步</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5"><span class="toc-nav-text">第三步</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5"><span class="toc-nav-text">第四步</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#%E7%9C%8B%E6%88%90%E5%93%81"><span class="toc-nav-text">看成品</span></a></li></ol></li></ol></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://example.com/2020/09/05/ReactNative实现点赞飘心动画/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+  <script>
+    var gitmentConfig = "gitfdy";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "ReactNative实现点赞飘心动画",
+        owner: "gitfdy",
+        repo: "gitfdy.github.io",
+        oauth: {
+          client_id: "15e5c1fd39417a673ca3",
+          client_secret: "9caf8a5e327adb1086389543e8d9bb3b906135ed"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  </script>
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2020 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+  </body>
+</html>

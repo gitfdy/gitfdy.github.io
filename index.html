@@ -1,277 +1,263 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  
-
-  
-  <title>🖥</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   <meta name="description" content="Coding">
-<meta property="og:type" content="website">
-<meta property="og:title" content="🖥">
-<meta property="og:url" content="http://example.com/index.html">
-<meta property="og:site_name" content="🖥">
-<meta property="og:description" content="Coding">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="dyfan">
-<meta name="twitter:card" content="summary">
+  <meta name="keyword" content="hexo-theme, vuejs">
   
-    <link rel="alternate" href="/atom.xml" title="🖥" type="application/atom+xml">
+    <link rel="shortcut icon" href="/css/images/logo.png">
   
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
+  <title>
+    
+      🖥
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
   
 <link rel="stylesheet" href="/css/style.css">
 
+  
+    
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+    
+<script src="/js/gitment.js"></script>
+
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
 <meta name="generator" content="Hexo 5.1.1"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">🖥</a>
-      </h1>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>🖥</span>
+    </a>
+    <ul class="right-list">
       
+        <li class="list-item">
+          
+            <a href="/" class="item-link active">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+    <div class="menu-mask">
+      <ul class="menu-list">
         
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-React" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/09/05/React/" class="article-date">
-  <time datetime="2020-09-05T09:37:00.000Z" itemprop="datePublished">2020-09-05</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/App/">App</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/05/React/">ReactNative实现网易云音乐登录波纹动画</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>个人一直比较喜欢网易云音乐,所以就想使用react native 仿写一个,当然开篇就是登录页面,我这边是以IOS的UI为准的,看到网易的登录页面后,被惊艳到了,想到底该怎么实现这种缥缈的波纹,有同学感兴趣的话,可以退出网易的账号,仔细观察下,还是有很多细节处理的很好的……本篇基于<a href="%5Bhttps://www.jianshu.com/p/902aeef750a9%5D(https://www.jianshu.com/p/902aeef750a9)">ReactNative实现点赞飘心动画</a>实现</p>
-<h4 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h4><p>在构造函数中声明多个用来驱动动画的Animate变量,我这里创建了10个,当然你也可以创建更多,但是不建议,十个及以下最好,因为同时在页面上显示的圆圈不会那么多,并且因为这个动画是改变视图的宽高属性,无法调用原生的UI线程,纯粹的JS执行来执行动画,太多的话,非常容易掉帧.以及一个用来做视图于动画匹配的变量,可能有同学会好奇为什么要初始化这么多变量,我理解的是在React Native中任何可显示的内容都不可能凭空出现,如果页面上有十个view,那就一定有十个实例,即便他们都一样</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">constructor(props) &#123;</span><br><span class="line">        super(props);</span><br><span class="line">        this.animViewIndex &#x3D; 0;</span><br><span class="line">        this.viewArr &#x3D; Array(10).fill()</span><br><span class="line">        this.viewArr.map((_, index) &#x3D;&gt; this[&#96;animView$&#123;index&#125;&#96;] &#x3D; new Animated.Value(0))</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h4 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h4><p>在render函数中使用循环声明多个View,因为这个动画的本质其实就是圆圈的半径变大,然后透明度逐渐增大,所以需要控制的变量很少,我这里初始化圆圈的大小为74,这个跟中间的LOGO大小保持一致.<br>这里有个关于动画的细节需要说一下,在做图片的大小变形的时候,最好使用transform的scaleX,scaleY或者scale,因为在IOS中每次调整组件的宽高,都需要重新剪裁和缩放原始图片,这会带来很大的性能开销,图像大小跟内存消耗成正比,不过在我们这个示例中却无法使用,因为我们变动的是视图的大小,而非图片,如果使用scale的话,会造成视图的失真,比如边框变宽等问题,希望同学们注意</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;View style&#x3D;&#123;LoginIndexSty.common.outer&#125;&gt;</span><br><span class="line">         &lt;TouchableOpacity onPress&#x3D;&#123;() &#x3D;&gt; this.startAnimate()&#125;&gt;</span><br><span class="line">             &lt;Logo&#x2F;&gt;</span><br><span class="line">         &lt;&#x2F;TouchableOpacity&gt;</span><br><span class="line">         &#123;</span><br><span class="line">             this.viewArr.map((_, index) &#x3D;&gt; &#123;</span><br><span class="line">                 let s &#x3D; 74;</span><br><span class="line">                 let size &#x3D; this[&#96;animView$&#123;index&#125;&#96;].interpolate(&#123;</span><br><span class="line">                     inputRange: [0, 1],</span><br><span class="line">                     outputRange: [1, WIDTH * 1.4]</span><br><span class="line">                 &#125;)</span><br><span class="line">                 let border &#x3D; this[&#96;animView$&#123;index&#125;&#96;].interpolate(&#123;</span><br><span class="line">                     inputRange: [0, 1],</span><br><span class="line">                     outputRange: [s &#x2F; 2, WIDTH * 0.7]</span><br><span class="line">                 &#125;)</span><br><span class="line">                 let opacity &#x3D; this[&#96;animView$&#123;index&#125;&#96;].interpolate(&#123;</span><br><span class="line">                     inputRange: [0, 0.5, 1],</span><br><span class="line">                     outputRange: [0, 1, 0]</span><br><span class="line">                 &#125;)</span><br><span class="line">                 return &lt;Animated.View</span><br><span class="line">                     key&#x3D;&#123;index&#125;</span><br><span class="line">                     style&#x3D;&#123;[LoginIndexSty.common.animateContainer, &#123;</span><br><span class="line">                         width: size,</span><br><span class="line">                         height: size,</span><br><span class="line">                         &#x2F;&#x2F; transform: [&#123;scale: size&#125;],</span><br><span class="line">                         borderRadius: border,</span><br><span class="line">                         opacity,</span><br><span class="line">                     &#125;]&#125;&#x2F;&gt;</span><br><span class="line">             &#125;)</span><br><span class="line">         &#125;</span><br><span class="line">     &lt;&#x2F;View&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="第三步"><a href="#第三步" class="headerlink" title="第三步"></a>第三步</h4><p> 使用构造函数中定义的驱动动画的变量来跟我们的视图一一对应,然后根据动画的当前值,判断是否驱动下一个视图,目前动画的时间设置的是7秒钟,这个是根据我个人观察网易云音乐的时间得来的,具体的…可能得拿秒表计时一下…🤔<br>这里有一个细节,在最后的一行,是为了做随机时间执行动画,因为通过观察发现网易云音乐的波纹不是固定时间做动画的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">startAnimate &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">     this[&#96;animView$&#123;this.animViewIndex&#125;&#96;].setValue(0)</span><br><span class="line">     let currentValue &#x3D; this[&#96;animView$&#123;this.animViewIndex&#125;&#96;].__getValue()</span><br><span class="line">     if (currentValue !&#x3D;&#x3D; 0) &#123;</span><br><span class="line">         this.animViewIndex++</span><br><span class="line">     &#125;</span><br><span class="line">     Animated.timing(this[&#96;animView$&#123;this.animViewIndex&#125;&#96;],</span><br><span class="line">         &#123;</span><br><span class="line">             toValue: 1,</span><br><span class="line">             duration: 7000,</span><br><span class="line">         &#125;</span><br><span class="line">     ).start(() &#x3D;&gt; &#123;</span><br><span class="line">         this[&#96;animView$&#123;this.animViewIndex&#125;&#96;].setValue(0)</span><br><span class="line"></span><br><span class="line">     &#125;)</span><br><span class="line">     if (this.animViewIndex &gt; 8) &#123;</span><br><span class="line">         this.animViewIndex &#x3D; 0</span><br><span class="line">     &#125;</span><br><span class="line">     this.animViewIndex++</span><br><span class="line">     setTimeout(() &#x3D;&gt; this.startAnimate(), Math.floor(Math.random() * (1000)) + 500)</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
-<h6 id="看成品-由于gif非高清的-我把波纹的颜色改成了白色😂-方便大家看效果"><a href="#看成品-由于gif非高清的-我把波纹的颜色改成了白色😂-方便大家看效果" class="headerlink" title="看成品(由于gif非高清的,我把波纹的颜色改成了白色😂,方便大家看效果)"></a>看成品(由于gif非高清的,我把波纹的颜色改成了白色😂,方便大家看效果)</h6><p><img src="https://upload-images.jianshu.io/upload_images/2004233-866ee16b8fe1a3de.gif?imageMogr2/auto-orient/strip" alt="网易云音乐登录页面动画(白色).gif"><br><img src="https://upload-images.jianshu.io/upload_images/2004233-c758415a2f4224f6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="原图.png"></p>
-<blockquote>
-<p>如果觉得这些内容对你有用,那点个赞再走吧❤️,欢迎转发,还请注明出处,谢谢</p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/05/React/" data-id="ckephe05600005si6fv8v084e" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react-native/" rel="tag">react native</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/09/05/hello-world/" class="article-date">
-  <time datetime="2020-09-05T09:25:14.963Z" itemprop="datePublished">2020-09-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/05/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/05/hello-world/" data-id="ckepgsj4y00009ri60yj13nt4" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/App/">App</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/react-native/" rel="tag">react native</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/react-native/" style="font-size: 10px;">react native</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2020/09/05/React/">ReactNative实现网易云音乐登录波纹动画</a>
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link mobile-active">Home</a>
+            
           </li>
         
-          <li>
-            <a href="/2020/09/05/hello-world/">Hello World</a>
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
           </li>
         
       </ul>
     </div>
   </div>
+</header>
 
+    <main class="app-body">
   
-</aside>
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2020/09/05/ReactNative%E5%AE%9E%E7%8E%B0%E7%82%B9%E8%B5%9E%E9%A3%98%E5%BF%83%E5%8A%A8%E7%94%BB/">ReactNative实现点赞飘心动画</a>
+      </h2>
+      <p class="article-date">2020年9月5日</p>
+      
+      <div class="article-summary">
+        
+          前言公司正在做直播项目,其中需要做一个类似YY,虎牙,斗鱼中的点赞飘心的动画.由于没有找到对应的库,就只能自己写一个了,目前采用的是ReactNative中的插值动画,其实实现起来也比较简单.上代码…..
+第一步在构造函数中声明多个用来驱动动画的Animate变量,以及一个用来做视图于动画匹 ...
         
       </div>
-      <footer id="footer">
+      <a class="more" href="/2020/09/05/ReactNative%E5%AE%9E%E7%8E%B0%E7%82%B9%E8%B5%9E%E9%A3%98%E5%BF%83%E5%8A%A8%E7%94%BB/">Read more</a>
+    </article>
   
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 dyfan<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2020/09/05/React/">ReactNative实现网易云音乐登录波纹动画</a>
+      </h2>
+      <p class="article-date">2020年9月5日</p>
+      
+        
+  <a href="/tags#react native" >
+    <span class="tag-code">react native</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          前言个人一直比较喜欢网易云音乐,所以就想使用react native 仿写一个,当然开篇就是登录页面,我这边是以IOS的UI为准的,看到网易的登录页面后,被惊艳到了,想到底该怎么实现这种缥缈的波纹,有同学感兴趣的话,可以退出网易的账号,仔细观察下,还是有很多细节处理的很好的……本篇基于Rea ...
+        
+      </div>
+      <a class="more" href="/2020/09/05/React/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2020/09/05/hello-world/">Hello World</a>
+      </h2>
+      <p class="article-date">2020年9月5日</p>
+      
+      <div class="article-summary">
+        
+          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer ...
+        
+      </div>
+      <a class="more" href="/2020/09/05/hello-world/">Read more</a>
+    </article>
+  
+
+  
+</main>
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2020 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
 </footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
 
-
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
 
 
 <script src="/js/script.js"></script>
 
-
-
-
-  </div>
-</body>
+  </body>
 </html>
