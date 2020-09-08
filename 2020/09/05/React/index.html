@@ -241,6 +241,8 @@
     
       <!-- Gitment START -->
       <div id="comments"></div>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+      <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
       <!-- Gitment END -->
     
   </article>
@@ -343,7 +345,17 @@
           }
         }
       })
-      gitment.render(document.getElementById('comments'))
+      var gitalk = new Gitalk({
+        clientID: "15e5c1fd39417a673ca3",
+        clientSecret: "9caf8a5e327adb1086389543e8d9bb3b906135ed",
+        repo: "gitfdy.github.io",
+        owner: "gitfdy",
+        admin: ["gitfdy"],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render(document.getElementById('comments'))
     }
   </script>
 
