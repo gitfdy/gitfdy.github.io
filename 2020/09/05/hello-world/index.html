@@ -309,27 +309,7 @@
   <script>
     var gitmentConfig = "gitfdy";
     if (gitmentConfig !== 'undefined') {
-      var gitment = new Gitment({
-        id: "Hello World",
-        owner: "gitfdy",
-        repo: "gitfdy.github.io",
-        oauth: {
-          client_id: "1842b923d735e195478c",
-          client_secret: "98b41436a3340abcecbf85ab3f5ba4bf180390dc"
-        },
-        theme: {
-          render(state, instance) {
-            const container = document.createElement('div')
-            container.lang = "en-US"
-            container.className = 'gitment-container gitment-root-container'
-            container.appendChild(instance.renderHeader(state, instance))
-            container.appendChild(instance.renderEditor(state, instance))
-            container.appendChild(instance.renderComments(state, instance))
-            container.appendChild(instance.renderFooter(state, instance))
-            return container;
-          }
-        }
-      })
+
       var gitalk = new Gitalk({
         clientID: "1842b923d735e195478c",
         clientSecret: "98b41436a3340abcecbf85ab3f5ba4bf180390dc",
