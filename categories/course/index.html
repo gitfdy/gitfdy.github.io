@@ -10,7 +10,7 @@
   
   <title>
     
-      Tags | Dyfan
+      Dyfan
     
   </title>
   <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -165,66 +165,49 @@
 </header>
 
     <div id="article-banner">
-    <h2>Tags</h2>
+    <h2>Archives</h2>
 </div>
-<main class="app-body">
-    <div id="tag-cloud">
-        
-            <a class="tag1" data-name="tag-react native">react native</a>
-        
-            <a class="tag1" data-name="tag-Hexo">Hexo</a>
-        
-    </div>
+<main class="app-body" id="archives">
     
-        <div class="tag-list">
-            <h3 class="tag-name" id="tag-react native">react native</h3>
-            
-                <ul class="tag-preview">
-                    <li>
-                        <a href="/2020/09/10/CodePush/">React Native常用CodePush操作</a>
-                    </li>
-                </ul>
-            
-                <ul class="tag-preview">
-                    <li>
-                        <a href="/2020/09/05/ReactNative实现点赞飘心动画/">ReactNative实现点赞飘心动画</a>
-                    </li>
-                </ul>
-            
-                <ul class="tag-preview">
-                    <li>
-                        <a href="/2020/09/05/React/">ReactNative实现网易云音乐登录波纹动画</a>
-                    </li>
-                </ul>
-            
-        </div>
     
-        <div class="tag-list">
-            <h3 class="tag-name" id="tag-Hexo">Hexo</h3>
-            
-                <ul class="tag-preview">
-                    <li>
-                        <a href="/2020/09/09/Hexo搭建过程/">Hexo搭建过程</a>
-                    </li>
-                </ul>
-            
-        </div>
+    
+        <section class="time-section">
+  <h1 class="section-year">
+    2020
+  </h1>
+  <div class="section-list">
+    
+    
+      <div class="section-list-item">
+        <a href="/2020/09/10/CodePush/" class="archive-title">React Native常用CodePush操作</a>
+        <p class="archive-date">09-10</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2020/09/09/Hexo%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B/" class="archive-title">Hexo搭建过程</a>
+        <p class="archive-date">09-09</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2020/09/05/ReactNative%E5%AE%9E%E7%8E%B0%E7%82%B9%E8%B5%9E%E9%A3%98%E5%BF%83%E5%8A%A8%E7%94%BB/" class="archive-title">ReactNative实现点赞飘心动画</a>
+        <p class="archive-date">09-05</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2020/09/05/React/" class="archive-title">ReactNative实现网易云音乐登录波纹动画</a>
+        <p class="archive-date">09-05</p>
+      </div>
+    
+  </div>
+</section>
     
 </main>
 
 <script>
   (function () {
-    var url = 'http://www.fandongyang.com/tags/index.html'
-    $('#article-banner').geopattern(url + Math.random())
-    $('.header').removeClass('fixed-header')
-
-    var tag = location.hash.replace('#', '')
-    if (tag) {
-      var tagId = "#tag-" + tag;
-      $("html, body").animate({
-        scrollTop: $(tagId).offset().top
-      }, 400)
-    }
+    var url = 'http://www.fandongyang.com/categories/course/index.html';
+    $('#article-banner').geopattern(url + Math.random());
+    $('.header').removeClass('fixed-header');
   })();
 </script>
 
