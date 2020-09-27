@@ -109,7 +109,9 @@ h2.article-head {
 }
 .article-summary {
   margin: 10px 0;
-  color: #34495e;
+  color: #525252;
+  font-size: 15px;
+  font-family: Helvetica Neue, NotoSansHans-Regular, AvenirNext-Regular, arial, Hiragino Sans GB, Microsoft Yahei, WenQuanYi Micro Hei, serif;
 }
 .more {
   font-weight: 600;
@@ -526,6 +528,8 @@ h2.article-head {
 .article-summary p {
   line-height: 1.6em;
   padding: 8px 0px;
+  color: #525252;
+  font-size: 15px;
 }
 .markdown-content p code,
 .article-summary p code {
@@ -958,7 +962,7 @@ h2.article-head {
   box-sizing: border-box;
 }
 .catalog-container .toc-main .toc-title {
-  font-size: 1.2em;
+  font-size: 17px;
   position: relative;
   padding-left: 28px;
 }
@@ -977,6 +981,7 @@ h2.article-head {
   margin-top: 1em;
   overflow-y: scroll;
   max-height: 480px;
+  font-size: 15px;
 }
 .catalog-container .toc-main .toc-nav::-webkit-scrollbar {
   display: none;
