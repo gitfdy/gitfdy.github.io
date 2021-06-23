@@ -171,8 +171,7 @@
   <!-- Article START -->
   <article class="post-article">
     <section class="markdown-content"><p><img src="http://picdyfan.test.upcdn.net/head.jpeg"></p>
-<p>###简介</p>
-<blockquote>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><blockquote>
 <p>Node 引入模块，需要经历三个步骤：路径分析，文件定位，编译执行。—–《深入浅出Node.js》</p>
 </blockquote>
 <blockquote>
@@ -187,8 +186,7 @@
 <blockquote>
 <p>(3) 自定义模块是指非核心模块，也不是路径形式的文件模块。以文件或者包的形式存在，这类模块的查找是最费时的。</p>
 </blockquote>
-<p>###规则</p>
-<p><strong>模块路径：Node 在定位文件模块的时候采用的一种查找策略。具体表现为一个路径组成的数组。</strong></p>
+<h3 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h3><p><strong>模块路径：Node 在定位文件模块的时候采用的一种查找策略。具体表现为一个路径组成的数组。</strong></p>
 <p>可以在本地任意位置创建一个js脚本,在其中打印模块路径</p>
 <p><code>console.log(module.paths)</code></p>
 <p>如我在桌面创建脚本后运行后,脚本输出结果如下：</p>
@@ -197,8 +195,7 @@
 <p>由此可见,其路径寻址规则如下：从当前目录的 node_modules 中寻找 -&gt; 父目录的 node_modules 中寻找 -&gt; 递归一直到根目录的 node_modules。<a href="'https://nodejs.org/api/modules.html#modules_accessing_the_main_module'">node寻址规则官方文档</a></p>
 <p>它的生成方式与 JavaScript 原型链或者作用域链的查找方式十分类似。Node 会逐个尝试模块路径，直到找到模块或者查找到根目录位置。可以看出，当文件路径比较深的时候，模块查找会比较耗时。</p>
 <p>Node 对引入过的模块都会进行缓存，无论是核心模块还是文件模块，require() 方法都采用缓存优先的方式进行加载，并且核心模块的优先级高于文件模块。</p>
-<p>###意外</p>
-<p><strong><em>但是有一种情况比较特别</em></strong></p>
+<h3 id="意外"><a href="#意外" class="headerlink" title="意外"></a>意外</h3><p><strong><em>但是有一种情况比较特别</em></strong></p>
 <p>首先了解一下<a href="'https://docs.npmjs.com/cli/v6/configuring-npm/package-json'">package.json</a>,该文件中最重要的是两个字段<em>name</em>和<em>version</em>,当你想发布一个可以供其他人使用的包到npm仓库时,这两个属性结合在一起会生成一个唯一标识,调用方可以根据这个标识找到指定的库以及对应的版本.</p>
 <p>意外发生在2021/6/21晚上,根据指定的包名,却无法正确找到指定的包.</p>
 <p>当项目的文件夹中存在<em>package.json</em>文件时,代码中的模块引入代码会优先匹配相同name的包,若存在多个<em>name</em>属性一样的<em>package.json</em>文件时,会抛出重复定义的错误.<br>若无异常,则会根据找到的<em>packgae.json</em>中的<em>main</em>属性找到该包的入口文件,当没有指定入口文件时,默认会查找<em>index.js</em>文件,若<em>index.js</em>文件不存在,则会抛出错误.当没有从<em>package.json</em>文件中找到与之名字对应的模块,才会继续遵循上述规则,即从<em>node_modules</em>文件夹中查询引入的模块.</p>
@@ -274,7 +271,7 @@
   <div class="toc-main">
     <strong class="toc-title">目录</strong>
     
-      <ol class="nav">none</ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-nav-text">简介</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E8%A7%84%E5%88%99"><span class="toc-nav-text">规则</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%84%8F%E5%A4%96"><span class="toc-nav-text">意外</span></a></li></ol>
     
   </div>
 </aside>
