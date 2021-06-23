@@ -171,6 +171,7 @@
   <!-- Article START -->
   <article class="post-article">
     <section class="markdown-content"><p><img src="http://picdyfan.test.upcdn.net/head.jpeg"></p>
+<p>###简介</p>
 <blockquote>
 <p>Node 引入模块，需要经历三个步骤：路径分析，文件定位，编译执行。—–《深入浅出Node.js》</p>
 </blockquote>
@@ -186,6 +187,7 @@
 <blockquote>
 <p>(3) 自定义模块是指非核心模块，也不是路径形式的文件模块。以文件或者包的形式存在，这类模块的查找是最费时的。</p>
 </blockquote>
+<p>###规则</p>
 <p><strong>模块路径：Node 在定位文件模块的时候采用的一种查找策略。具体表现为一个路径组成的数组。</strong></p>
 <p>可以在本地任意位置创建一个js脚本,在其中打印模块路径</p>
 <p><code>console.log(module.paths)</code></p>
@@ -195,6 +197,7 @@
 <p>由此可见,其路径寻址规则如下：从当前目录的 node_modules 中寻找 -&gt; 父目录的 node_modules 中寻找 -&gt; 递归一直到根目录的 node_modules。<a href="'https://nodejs.org/api/modules.html#modules_accessing_the_main_module'">node寻址规则官方文档</a></p>
 <p>它的生成方式与 JavaScript 原型链或者作用域链的查找方式十分类似。Node 会逐个尝试模块路径，直到找到模块或者查找到根目录位置。可以看出，当文件路径比较深的时候，模块查找会比较耗时。</p>
 <p>Node 对引入过的模块都会进行缓存，无论是核心模块还是文件模块，require() 方法都采用缓存优先的方式进行加载，并且核心模块的优先级高于文件模块。</p>
+<p>###意外</p>
 <p><strong><em>但是有一种情况比较特别</em></strong></p>
 <p>首先了解一下<a href="'https://docs.npmjs.com/cli/v6/configuring-npm/package-json'">package.json</a>,该文件中最重要的是两个字段<em>name</em>和<em>version</em>,当你想发布一个可以供其他人使用的包到npm仓库时,这两个属性结合在一起会生成一个唯一标识,调用方可以根据这个标识找到指定的库以及对应的版本.</p>
 <p>意外发生在2021/6/21晚上,根据指定的包名,却无法正确找到指定的包.</p>
