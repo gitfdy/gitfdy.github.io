@@ -10,7 +10,7 @@
   
   <title>
     
-      Node包寻址规则 | Dyfan
+      React Native交互管理器 | Dyfan
     
   </title>
   <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -161,8 +161,8 @@
 </header>
 
     <div id="article-banner">
-  <h2>Node包寻址规则</h2>
-  <p class="post-date">2021-06-23</p>
+  <h2>React Native交互管理器</h2>
+  <p class="post-date">2021-06-24</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
   </div>
@@ -170,43 +170,51 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><p><img src="http://picdyfan.test.upcdn.net/head.jpeg"></p>
-<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><blockquote>
-<p>Node 引入模块，需要经历三个步骤：路径分析，文件定位，编译执行。—–《深入浅出Node.js》</p>
+    <section class="markdown-content"><h4 id="交互管理器"><a href="#交互管理器" class="headerlink" title="交互管理器"></a>交互管理器</h4><blockquote>
+<p>Interactionmanager 可以将一些耗时较长的工作安排到所有互动或动画完成之后再进行。这样可以保证 JavaScript 动画的流畅运行。</p>
 </blockquote>
 <blockquote>
-<p>Node 中的模块分为核心模块和文件模块。</p>
+<p>触摸处理系统会把一个或多个进行中的触摸操作认定为’交互’，并且会将*runAfterInteractions()*的回调函数延迟执行，直到所有的触摸操作都结束或取消了。</p>
 </blockquote>
 <blockquote>
-<p>(1) 核心模块在 Node 源码编译过程中，编译成为二进制文件，在 Node 启动阶段部分核心模块就被加载进内存，所以省去了文件定位和编译的时间，加载速度最快。</p>
+<p>InteractionManager 还允许应用注册动画，在动画开始时创建一个交互“句柄”，然后在结束的时候清除它。</p>
 </blockquote>
-<blockquote>
-<p>(2) 文件模块则是在运行时动态加载。</p>
-</blockquote>
-<blockquote>
-<p>(3) 自定义模块是指非核心模块，也不是路径形式的文件模块。以文件或者包的形式存在，这类模块的查找是最费时的。</p>
-</blockquote>
-<h3 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h3><p><strong>模块路径：Node 在定位文件模块的时候采用的一种查找策略。具体表现为一个路径组成的数组。</strong></p>
-<p>可以在本地任意位置创建一个js脚本,在其中打印模块路径</p>
-<p><code>console.log(module.paths)</code></p>
-<p>如我在桌面创建脚本后运行后,脚本输出结果如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#39;&#x2F;Users&#x2F;frandy&#x2F;Desktop&#x2F;node_modules&#39;,</span><br><span class="line">  &#39;&#x2F;Users&#x2F;frandy&#x2F;node_modules&#39;,</span><br><span class="line">  &#39;&#x2F;Users&#x2F;node_modules&#39;,</span><br><span class="line">  &#39;&#x2F;node_modules&#39;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">InteractionManager.runAfterInteractions(() &#x3D;&gt; &#123;</span><br><span class="line">  &#x2F;&#x2F; ...耗时较长的同步执行的任务...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
-<p>由此可见,其路径寻址规则如下：从当前目录的 node_modules 中寻找 -&gt; 父目录的 node_modules 中寻找 -&gt; 递归一直到根目录的 node_modules。<a href="'https://nodejs.org/api/modules.html#modules_accessing_the_main_module'">node寻址规则官方文档</a></p>
-<p>它的生成方式与 JavaScript 原型链或者作用域链的查找方式十分类似。Node 会逐个尝试模块路径，直到找到模块或者查找到根目录位置。可以看出，当文件路径比较深的时候，模块查找会比较耗时。</p>
-<p>Node 对引入过的模块都会进行缓存，无论是核心模块还是文件模块，require() 方法都采用缓存优先的方式进行加载，并且核心模块的优先级高于文件模块。</p>
-<h3 id="意外"><a href="#意外" class="headerlink" title="意外"></a>意外</h3><p><strong><em>但是有一种情况比较特别</em></strong></p>
-<p>首先了解一下<a href="'https://docs.npmjs.com/cli/v6/configuring-npm/package-json'">package.json</a>,该文件中最重要的是两个字段<em>name</em>和<em>version</em>,当你想发布一个可以供其他人使用的包到npm仓库时,这两个属性结合在一起会生成一个唯一标识,调用方可以根据这个标识找到指定的库以及对应的版本.</p>
-<p>意外发生在2021/6/21晚上,根据指定的包名,却无法正确找到指定的包.</p>
-<p>当项目的文件夹中存在<em>package.json</em>文件时,代码中的模块引入代码会优先匹配相同name的包,若存在多个<em>name</em>属性一样的<em>package.json</em>文件时,会抛出重复定义的错误.<br>若无异常,则会根据找到的<em>packgae.json</em>中的<em>main</em>属性找到该包的入口文件,当没有指定入口文件时,默认会查找<em>index.js</em>文件,若<em>index.js</em>文件不存在,则会抛出错误.当没有从<em>package.json</em>文件中找到与之名字对应的模块,才会继续遵循上述规则,即从<em>node_modules</em>文件夹中查询引入的模块.</p>
+<h4 id="动画类型"><a href="#动画类型" class="headerlink" title="动画类型"></a>动画类型</h4><ul>
+<li>decay(衰减动画)</li>
+<li>timing(缓动动画)</li>
+<li>spring(阻尼动画)</li>
+</ul>
+<h5 id="通用配置"><a href="#通用配置" class="headerlink" title="通用配置"></a>通用配置</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">AnimationConfig &#x3D; &#123;</span><br><span class="line">  isInteraction?: boolean,</span><br><span class="line">  useNativeDriver?: boolean,</span><br><span class="line">  onComplete?: ?EndCallback,</span><br><span class="line">  iterations?: number,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="意外出现"><a href="#意外出现" class="headerlink" title="意外出现"></a>意外出现</h4><pre><code>发生在2021/06/19日上午9点20分31秒,突然有大佬告诉我,我们做的一个页面跳转到其他页面后,会致使其他页面请求延迟好几秒钟,并且还是偶发的.赶忙拉代码查看,后来大佬告诉我可能是因为我们写的页面动画未执行完毕,才导致跳转到其他页面后迟迟不加载数据....,后来在大佬的指导下,在原来的页面动画配置项中增加了一个属性*isInteraction*,设置为*false*,果然没问题了.在这里感谢大佬指点🎉👍🙇🤌🙇👍🎉</code></pre>
+<p>    </p>
+<h4 id="究其原因"><a href="#究其原因" class="headerlink" title="究其原因"></a>究其原因</h4><p>在使用动画的时候,<em>isInteraction</em>属性默认值为<em>true</em>,即RN框架会<br>默认调用<em>InteractionManager.createInteractionHandle()<em>方法用来创建句柄,该句柄只要不释放,即不调用</em>InteractionManager.clearInteractionHandle(handle)<em>方法去清除句柄,那么在其他页面中如果使用了</em>InteractionManager.runAfterInteractions()<em>方法,就会一直等待,直到这个句柄在动画执行完成之后自动清除,才会执行后续的回调函数.现在我们在执行动画配置中设置</em>isInteraction</em>属性为<em>false</em>,即不让其再创建句柄,则*InteractionManager.runAfterInteractions()*就不会再理会它是否还持有句柄,就直接运行回调就完了,至此,真相大白!🎉🎉</p>
+<p>上几个图看下,以<em>ti</em><br>默认调用<em>InteractionManager.createInteractionHandle()<em>方法用来创建句柄,该句柄只要不释放,即不调用</em>InteractionManager.clearInteractionHandle(handle)<em>方法去清除句柄,那么在其他页面中如果使用了</em>InteractionManager.runAfterInteractions()<em>方法,就会一直等待,直到这个句柄在动画执行完成之后自动清除,才会执行后续的回调函数.现在我们在执行动画配置中设置</em>isInteraction</em>属性为<em>false</em>,即不让其再创建句柄,则*InteractionManager.runAfterInteractions()*就不会再理会它是否还持有句柄,就直接运行回调就完了,至此,真相大白!🎉🎉</p>
+<p>以<em>timing</em>动画为例</p>
+<hr>
+<p><em>start函数</em><br><img src="http://picdyfan.test.upcdn.net/AnimatedImplementation.png"></p>
+<p><em>动画相关配置</em><br><img src="http://picdyfan.test.upcdn.net/TimingAnimation.png"></p>
+<p><em>动画执行函数</em><br><img src="http://picdyfan.test.upcdn.net/AnimatedValue.png"></p>
+<p><em>InteractionManager.createInteractionHandle</em><br><img src="http://picdyfan.test.upcdn.net/createInterAction.png"></p>
+<p><em>InteractionManager.runAfterInteractions</em><br><img src="http://picdyfan.test.upcdn.net/InteractionManager.png"></p>
+<p><em>_sheduleUpdate</em><br><img src="http://picdyfan.test.upcdn.net/InteractionManager2.png"></p>
+<h6 id="tip-setImmediate函数"><a href="#tip-setImmediate函数" class="headerlink" title="tip:setImmediate函数"></a>tip:<em>setImmediate</em>函数</h6><blockquote>
+<p>setImmediate：主要用于设定立即执行的任务，只会执行一次。函数一旦调用，立马执行此任务，例如程序一启动，就开始推送消息给用户<br><code>//设定定时器对象，只有一个参数callback为执行体函数 declare function setImmediate(callback: ((...args: Array&lt;any&gt;) =&gt; mixed), ...args: Array&lt;any&gt;): Object; //移除定时器对象 declare function clearImmediate(immediateObject: any): Object;</code></p>
+</blockquote>
+<p><em>_processUpdate</em><br><img src="http://picdyfan.test.upcdn.net/_processUpdate.png"></p>
+<hr>
+<pre><code>到底了....木有啦,最后总结一句,若需求中的动画完全可预测且无需跟手的简单动画,则强烈推荐使用LayoutAnimation,性能Max,流畅度Max...</code></pre>
+<hr>
 </section>
     <!-- Tags START -->
     
       <div class="tags">
         <span>Tags:</span>
         
-  <a href="/tags#Node" >
-    <span class="tag-code">Node</span>
+  <a href="/tags#react native" >
+    <span class="tag-code">react native</span>
   </a>
 
       </div>
@@ -217,20 +225,13 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2020/10/12/React-Native%E5%88%9B%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93/">
+      <a class="nav-left" href="/2021/06/23/Node%E5%8C%85%E5%AF%BB%E5%9D%80%E8%A7%84%E5%88%99/">
         <span class="nav-arrow">← </span>
         
-          React Native创建自己的第三方库
+          Node包寻址规则
         
       </a>
     
-    
-      <a class="nav-right" href="/2021/06/24/React-Native%E4%BA%A4%E4%BA%92%E7%AE%A1%E7%90%86%E5%99%A8/">
-        
-          React Native交互管理器
-        
-        <span class="nav-arrow"> →</span>
-      </a>
     
   </div>
 
@@ -278,7 +279,7 @@
   <div class="toc-main">
     <strong class="toc-title">目录</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-nav-text">简介</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E8%A7%84%E5%88%99"><span class="toc-nav-text">规则</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%84%8F%E5%A4%96"><span class="toc-nav-text">意外</span></a></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BA%A4%E4%BA%92%E7%AE%A1%E7%90%86%E5%99%A8"><span class="toc-nav-text">交互管理器</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%8A%A8%E7%94%BB%E7%B1%BB%E5%9E%8B"><span class="toc-nav-text">动画类型</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#%E9%80%9A%E7%94%A8%E9%85%8D%E7%BD%AE"><span class="toc-nav-text">通用配置</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%84%8F%E5%A4%96%E5%87%BA%E7%8E%B0"><span class="toc-nav-text">意外出现</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E7%A9%B6%E5%85%B6%E5%8E%9F%E5%9B%A0"><span class="toc-nav-text">究其原因</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#tip-setImmediate%E5%87%BD%E6%95%B0"><span class="toc-nav-text">tip:setImmediate函数</span></a></li></ol></li></ol></li></ol>
     
   </div>
 </aside>
@@ -289,7 +290,7 @@
 
 <script>
   (function () {
-    var url = 'http://www.fandongyang.com/2021/06/23/Node包寻址规则/';
+    var url = 'http://www.fandongyang.com/2021/06/24/React-Native交互管理器/';
     var banner = ''
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
