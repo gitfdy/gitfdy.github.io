@@ -193,8 +193,7 @@
     </p>
 </blockquote>
 <h4 id="究其原因"><a href="#究其原因" class="headerlink" title="究其原因"></a>究其原因</h4><p>在使用动画的时候,<em>isInteraction</em>属性默认值为<em>true</em>,即RN框架会<br>默认调用<em>InteractionManager.createInteractionHandle()<em>方法用来创建句柄,该句柄只要不释放,即不调用</em>InteractionManager.clearInteractionHandle(handle)<em>方法去清除句柄,那么在其他页面中如果使用了</em>InteractionManager.runAfterInteractions()<em>方法,就会一直等待,直到这个句柄在动画执行完成之后自动清除,才会执行后续的回调函数.现在我们在执行动画配置中设置</em>isInteraction</em>属性为<em>false</em>,即不让其再创建句柄,则*InteractionManager.runAfterInteractions()*就不会再理会它是否还持有句柄,就直接运行回调就完了,至此,真相大白!🎉🎉</p>
-<p>上几个图看下,以<em>ti</em><br>默认调用<em>InteractionManager.createInteractionHandle()<em>方法用来创建句柄,该句柄只要不释放,即不调用</em>InteractionManager.clearInteractionHandle(handle)<em>方法去清除句柄,那么在其他页面中如果使用了</em>InteractionManager.runAfterInteractions()<em>方法,就会一直等待,直到这个句柄在动画执行完成之后自动清除,才会执行后续的回调函数.现在我们在执行动画配置中设置</em>isInteraction</em>属性为<em>false</em>,即不让其再创建句柄,则*InteractionManager.runAfterInteractions()*就不会再理会它是否还持有句柄,就直接运行回调就完了,至此,真相大白!🎉🎉</p>
-<p>以<em>timing</em>动画为例</p>
+<p>上图看下,以<em>timing</em>动画为例</p>
 <hr>
 <p><em>start函数</em><br><img src="http://picdyfan.test.upcdn.net/AnimatedImplementation.png"></p>
 <p><em>动画相关配置</em><br><img src="http://picdyfan.test.upcdn.net/TimingAnimation.png"></p>
