@@ -188,8 +188,10 @@
 </ul>
 <h5 id="通用配置"><a href="#通用配置" class="headerlink" title="通用配置"></a>通用配置</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">AnimationConfig &#x3D; &#123;</span><br><span class="line">  isInteraction?: boolean,</span><br><span class="line">  useNativeDriver?: boolean,</span><br><span class="line">  onComplete?: ?EndCallback,</span><br><span class="line">  iterations?: number,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="意外出现"><a href="#意外出现" class="headerlink" title="意外出现"></a>意外出现</h4><pre><code>发生在2021/06/19日上午9点20分31秒,突然有大佬告诉我,我们做的一个页面跳转到其他页面后,会致使其他页面请求延迟好几秒钟,并且还是偶发的.赶忙拉代码查看,后来大佬告诉我可能是因为我们写的页面动画未执行完毕,才导致跳转到其他页面后迟迟不加载数据....,后来在大佬的指导下,在原来的页面动画配置项中增加了一个属性*isInteraction*,设置为*false*,果然没问题了.在这里感谢大佬指点🎉👍🙇🤌🙇👍🎉</code></pre>
-<p>    </p>
+<h4 id="意外出现"><a href="#意外出现" class="headerlink" title="意外出现"></a>意外出现</h4><blockquote>
+<p>发生在2021/06/19日上午9点20分31秒,突然有大佬告诉我,我们做的一个页面跳转到其他页面后,会致使其他页面请求延迟好几秒钟,并且还是偶发的.赶忙拉代码查看,后来大佬告诉我可能是因为我们写的页面动画未执行完毕,才导致跳转到其他页面后迟迟不加载数据….,后来在大佬的指导下,在原来的页面动画配置项中增加了一个属性<em>isInteraction</em>,设置为<em>false</em>,果然没问题了.在这里感谢大佬指点🎉👍🙇🤌🙇👍🎉
+    </p>
+</blockquote>
 <h4 id="究其原因"><a href="#究其原因" class="headerlink" title="究其原因"></a>究其原因</h4><p>在使用动画的时候,<em>isInteraction</em>属性默认值为<em>true</em>,即RN框架会<br>默认调用<em>InteractionManager.createInteractionHandle()<em>方法用来创建句柄,该句柄只要不释放,即不调用</em>InteractionManager.clearInteractionHandle(handle)<em>方法去清除句柄,那么在其他页面中如果使用了</em>InteractionManager.runAfterInteractions()<em>方法,就会一直等待,直到这个句柄在动画执行完成之后自动清除,才会执行后续的回调函数.现在我们在执行动画配置中设置</em>isInteraction</em>属性为<em>false</em>,即不让其再创建句柄,则*InteractionManager.runAfterInteractions()*就不会再理会它是否还持有句柄,就直接运行回调就完了,至此,真相大白!🎉🎉</p>
 <p>上几个图看下,以<em>ti</em><br>默认调用<em>InteractionManager.createInteractionHandle()<em>方法用来创建句柄,该句柄只要不释放,即不调用</em>InteractionManager.clearInteractionHandle(handle)<em>方法去清除句柄,那么在其他页面中如果使用了</em>InteractionManager.runAfterInteractions()<em>方法,就会一直等待,直到这个句柄在动画执行完成之后自动清除,才会执行后续的回调函数.现在我们在执行动画配置中设置</em>isInteraction</em>属性为<em>false</em>,即不让其再创建句柄,则*InteractionManager.runAfterInteractions()*就不会再理会它是否还持有句柄,就直接运行回调就完了,至此,真相大白!🎉🎉</p>
 <p>以<em>timing</em>动画为例</p>
