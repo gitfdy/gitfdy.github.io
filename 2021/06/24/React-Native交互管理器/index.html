@@ -202,8 +202,10 @@
 <p><em>InteractionManager.runAfterInteractions</em><br><img src="http://picdyfan.test.upcdn.net/InteractionManager.png"></p>
 <p><em>_sheduleUpdate</em><br><img src="http://picdyfan.test.upcdn.net/InteractionManager2.png"></p>
 <h6 id="tip-setImmediate函数"><a href="#tip-setImmediate函数" class="headerlink" title="tip:setImmediate函数"></a>tip:<em>setImmediate</em>函数</h6><blockquote>
-<p>setImmediate：主要用于设定立即执行的任务，只会执行一次。函数一旦调用，立马执行此任务，例如程序一启动，就开始推送消息给用户<br><code>//设定定时器对象，只有一个参数callback为执行体函数 declare function setImmediate(callback: ((...args: Array&lt;any&gt;) =&gt; mixed), ...args: Array&lt;any&gt;): Object; //移除定时器对象 declare function clearImmediate(immediateObject: any): Object;</code></p>
+<p>setImmediate：主要用于设定立即执行的任务，只会执行一次。函数一旦调用，立马执行此任务，例如程序一启动，就开始推送消息给用户</p>
 </blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;设定定时器对象，只有一个参数callback为执行体函数</span><br><span class="line">declare function setImmediate(callback: ((...args: Array&lt;any&gt;) &#x3D;&gt; mixed), ...args: Array&lt;any&gt;): Object;</span><br><span class="line">&#x2F;&#x2F;移除定时器对象</span><br><span class="line">declare function clearImmediate(immediateObject: any): Object;</span><br></pre></td></tr></table></figure>
+
 <p><em>_processUpdate</em><br><img src="http://picdyfan.test.upcdn.net/_processUpdate.png"></p>
 <hr>
 <pre><code>到底了....木有啦,最后总结一句,若需求中的动画完全可预测且无需跟手的简单动画,则强烈推荐使用LayoutAnimation,性能Max,流畅度Max...</code></pre>
