@@ -10,7 +10,7 @@
   
   <title>
     
-      JS中的宏微任务和事件循环 | Dyfan
+      JS的splice()方法在for循环中使用 | Dyfan
     
   </title>
   <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -161,7 +161,7 @@
 </header>
 
     <div id="article-banner">
-  <h2>JS中的宏微任务和事件循环</h2>
+  <h2>JS的splice()方法在for循环中使用</h2>
   <p class="post-date">2021-06-28</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
@@ -170,14 +170,14 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><h4 id="EventLoop-事件循环"><a href="#EventLoop-事件循环" class="headerlink" title="EventLoop(事件循环)"></a>EventLoop(事件循环)</h4><p>JS引擎一直等待着任务队列中任务的到来，然后加以处理,处理完继续等…循环往复,周而复始,孜孜不倦……</p>
-<h5 id="同步任务和异步任务"><a href="#同步任务和异步任务" class="headerlink" title="同步任务和异步任务"></a>同步任务和异步任务</h5><p>JS单线程任务被分为同步任务和异步任务,同步任务都在主线程(这里的主线程就是JS引擎线程)上执行,会形成一个执行栈</p>
-<p>主线程之外，事件触发线程管理着一个任务队列,只要异步任务有了运行结果,就在任务队列之中放一个事件回调</p>
-<p>一旦执行栈中的所有同步任务执行完毕(也就是JS引擎线程空闲了),系统就会读取任务队列,将可运行的异步任务(任务队列中的事件回调,只要任务队列中有事件回调,就说明可以执行)添加到执行栈中,开始执行</p>
-<h4 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h4><p>任务被分为两种，一种宏任务（MacroTask）也叫Task，一种叫微任务（MicroTask）</p>
-<h5 id="MacroTask-宏任务"><a href="#MacroTask-宏任务" class="headerlink" title="MacroTask(宏任务)"></a>MacroTask(宏任务)</h5><p>script(外层同步代码)、postMessage、setTimeout、setInterval、setImmediate(除IE10浏览器外都不支持)、I/O操作、UI渲染</p>
-<h5 id="MicroTask-微任务"><a href="#MicroTask-微任务" class="headerlink" title="MicroTask(微任务)"></a>MicroTask(微任务)</h5><p>Process.nextTick（Node独有）、Promise、Object.observe(废弃)、MutationObserver</p>
-<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">console.log(&#39;script start&#39;)</span><br><span class="line"></span><br><span class="line">setTimeout(function() &#123;</span><br><span class="line">    console.log(&#39;timer over&#39;)</span><br><span class="line">&#125;, 0)</span><br><span class="line"></span><br><span class="line">Promise.resolve().then(function() &#123;</span><br><span class="line">    console.log(&#39;promise1&#39;)</span><br><span class="line">&#125;).then(function() &#123;</span><br><span class="line">    console.log(&#39;promise2&#39;)</span><br><span class="line">&#125;).then(function() &#123;</span><br><span class="line">    console.log(&#39;promise3&#39;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">new Promise(function (resolve) &#123;</span><br><span class="line">    console.log(&#39;promise4&#39;)</span><br><span class="line"> </span><br><span class="line">    for (let i &#x3D; 0; i &lt; 666; i++) &#123;</span><br><span class="line">        i &#x3D;&#x3D; 5 &amp;&amp; resolve()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).then(function () &#123;</span><br><span class="line">    console.log(&#39;promise5&#39;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">Promise.resolve().then(function() &#123;</span><br><span class="line">    console.log(&#39;promise6&#39;)</span><br><span class="line">&#125;).then(function() &#123;</span><br><span class="line">    console.log(&#39;promise7&#39;)</span><br><span class="line">&#125;).then(function() &#123;</span><br><span class="line">    console.log(&#39;promise8&#39;)</span><br><span class="line">&#125;)</span><br><span class="line">console.log(&#39;script end&#39;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+    <section class="markdown-content"><h4 id="Splice"><a href="#Splice" class="headerlink" title="Splice"></a>Splice</h4><blockquote>
+<p>splice() 方法通过删除或替换现有元素或者原地添加新的元素来修改数组,并以数组形式返回被修改的内容。此方法会改变原数组。</p>
+</blockquote>
+<p>在JS中常使用该方法来更新数组数据,使用起来着实方便,但此方法在js的循环体(for,forEach,map,for in,for of)中使用,会存在问题</p>
+<h4 id="举个栗子"><a href="#举个栗子" class="headerlink" title="举个栗子"></a>举个栗子</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">let apple1 &#x3D; [1, 2, 3, -3, 4, 5, -5, 6, 7];</span><br><span class="line">let apple2 &#x3D; [1, 2, 3, -3, -4, 5, -5, 6, 7];</span><br><span class="line">let apple3 &#x3D; [1, 2, 3, -3, -4, -5, -5, 6, 7];</span><br><span class="line">for (var i &#x3D; 0; i &lt;&#x3D; apple1.length; i++) &#123;</span><br><span class="line">	if (apple1[i] &lt; 0) &#123;</span><br><span class="line">		apple1.splice(i, 1);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">console.log(&#39;apple1&#x3D;&gt;&#39;,apple1)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; apple1&#x3D;&gt;  [1, 2, 3, 4, 5, 6, 7]</span><br><span class="line">&#x2F;&#x2F; apple2&#x3D;&gt;  [1, 2, 3, -4, 5, 6, 7]</span><br><span class="line">&#x2F;&#x2F; apple3&#x3D;&gt;  [1, 2, 3, -4, -5, 6, 7]</span><br></pre></td></tr></table></figure>
+
+<h4 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h4><p>为什么第一组看起来正常,后面两组结果不正常呢?<br>通过文档可知,splice是直接修改数组的,所以第一组当找到-3时,下标为3,此时执行splice移除该元素,移除后,此时的下标3指向的是4,但是下标为3的已经循环了一次,等到再次执行时,就会直接跳过4,继续执行下标为4的5,再次找到了小于0的-5,此时再次执行splice,下标的指向再次发生变化,跳过6,直接执行下标为6的7,至此循环结束</p>
+<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>只需要在splice执行后,追加i–,将其下标往前移动一位即可,以此来避开这个坑</p>
 </section>
     <!-- Tags START -->
     
@@ -196,20 +196,13 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2021/06/24/React-Native%E4%BA%A4%E4%BA%92%E7%AE%A1%E7%90%86%E5%99%A8/">
+      <a class="nav-left" href="/2021/06/28/JS%E4%B8%AD%E7%9A%84%E5%AE%8F%E4%BB%BB%E5%8A%A1%E5%92%8C%E5%BE%AE%E4%BB%BB%E5%8A%A1/">
         <span class="nav-arrow">← </span>
         
-          React Native交互管理器
+          JS中的宏微任务和事件循环
         
       </a>
     
-    
-      <a class="nav-right" href="/2021/06/28/JS%E7%9A%84splice-%E6%96%B9%E6%B3%95%E5%9C%A8for%E5%BE%AA%E7%8E%AF%E4%B8%AD%E4%BD%BF%E7%94%A8/">
-        
-          JS的splice()方法在for循环中使用
-        
-        <span class="nav-arrow"> →</span>
-      </a>
     
   </div>
 
@@ -257,7 +250,7 @@
   <div class="toc-main">
     <strong class="toc-title">目录</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#EventLoop-%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF"><span class="toc-nav-text">EventLoop(事件循环)</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#%E5%90%8C%E6%AD%A5%E4%BB%BB%E5%8A%A1%E5%92%8C%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1"><span class="toc-nav-text">同步任务和异步任务</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BB%BB%E5%8A%A1"><span class="toc-nav-text">任务</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#MacroTask-%E5%AE%8F%E4%BB%BB%E5%8A%A1"><span class="toc-nav-text">MacroTask(宏任务)</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#MicroTask-%E5%BE%AE%E4%BB%BB%E5%8A%A1"><span class="toc-nav-text">MicroTask(微任务)</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-nav-text">示例</span></a></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Splice"><span class="toc-nav-text">Splice</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%B8%BE%E4%B8%AA%E6%A0%97%E5%AD%90"><span class="toc-nav-text">举个栗子</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E7%96%91%E9%97%AE"><span class="toc-nav-text">疑问</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E8%A7%A3%E5%86%B3"><span class="toc-nav-text">解决</span></a></li></ol>
     
   </div>
 </aside>
@@ -268,7 +261,7 @@
 
 <script>
   (function () {
-    var url = 'http://www.fandongyang.com/2021/06/28/JS中的宏任务和微任务/';
+    var url = 'http://www.fandongyang.com/2021/06/28/JS的splice-方法在for循环中使用/';
     var banner = ''
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
