@@ -170,7 +170,8 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><p><img src="http://picdyfan.test.upcdn.net/head.jpeg"></p>
+    <section class="markdown-content"><p>！<a target="_blank" rel="noopener" href="http://picdyfan.test.upcdn.net/head.jpeg"></a></p>
+<h3 id="意外"><a href="#意外" class="headerlink" title="意外"></a>意外</h3><p>意外发生在2021/6/21晚上，根据指定的包名，却无法正确找到指定的包.</p>
 <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><blockquote>
 <p>Node 引入模块，需要经历三个步骤：路径分析，文件定位，编译执行。—–《深入浅出Node.js》</p>
 </blockquote>
@@ -186,19 +187,30 @@
 <blockquote>
 <p>(3) 自定义模块是指非核心模块，也不是路径形式的文件模块。以文件或者包的形式存在，这类模块的查找是最费时的。</p>
 </blockquote>
+<hr>
 <h3 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h3><p><strong>模块路径：Node 在定位文件模块的时候采用的一种查找策略。具体表现为一个路径组成的数组。</strong></p>
-<p>可以在本地任意位置创建一个js脚本,在其中打印模块路径</p>
+<p>可以在本地任意位置创建一个js脚本，在其中打印模块路径</p>
 <p><code>console.log(module.paths)</code></p>
-<p>如我在桌面创建脚本后运行后,脚本输出结果如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#39;&#x2F;Users&#x2F;frandy&#x2F;Desktop&#x2F;node_modules&#39;,</span><br><span class="line">  &#39;&#x2F;Users&#x2F;frandy&#x2F;node_modules&#39;,</span><br><span class="line">  &#39;&#x2F;Users&#x2F;node_modules&#39;,</span><br><span class="line">  &#39;&#x2F;node_modules&#39;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>如我在桌面创建脚本后运行后，脚本输出结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#39;&#x2F;Users&#x2F;frandy&#x2F;Desktop&#x2F;node_modules&#39;，</span><br><span class="line">  &#39;&#x2F;Users&#x2F;frandy&#x2F;node_modules&#39;，</span><br><span class="line">  &#39;&#x2F;Users&#x2F;node_modules&#39;，</span><br><span class="line">  &#39;&#x2F;node_modules&#39;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 
-<p>由此可见,其路径寻址规则如下：从当前目录的 node_modules 中寻找 -&gt; 父目录的 node_modules 中寻找 -&gt; 递归一直到根目录的 node_modules。<a href="'https://nodejs.org/api/modules.html#modules_accessing_the_main_module'">node寻址规则官方文档</a></p>
+<p>由此可见，其路径寻址规则如下：从当前目录的 node_modules 中寻找 -&gt; 父目录的 node_modules 中寻找 -&gt; 递归一直到根目录的 node_modules。<a href="'https://nodejs.org/api/modules.html#modules_accessing_the_main_module'">node寻址规则官方文档</a></p>
 <p>它的生成方式与 JavaScript 原型链或者作用域链的查找方式十分类似。Node 会逐个尝试模块路径，直到找到模块或者查找到根目录位置。可以看出，当文件路径比较深的时候，模块查找会比较耗时。</p>
 <p>Node 对引入过的模块都会进行缓存，无论是核心模块还是文件模块，require() 方法都采用缓存优先的方式进行加载，并且核心模块的优先级高于文件模块。</p>
-<h3 id="意外"><a href="#意外" class="headerlink" title="意外"></a>意外</h3><p><strong><em>但是有一种情况比较特别</em></strong></p>
-<p>首先了解一下<a href="'https://docs.npmjs.com/cli/v6/configuring-npm/package-json'">package.json</a>,该文件中最重要的是两个字段<em>name</em>和<em>version</em>,当你想发布一个可以供其他人使用的包到npm仓库时,这两个属性结合在一起会生成一个唯一标识,调用方可以根据这个标识找到指定的库以及对应的版本.</p>
-<p>意外发生在2021/6/21晚上,根据指定的包名,却无法正确找到指定的包.</p>
-<p>当项目的文件夹中存在<em>package.json</em>文件时,代码中的模块引入代码会优先匹配相同name的包,若存在多个<em>name</em>属性一样的<em>package.json</em>文件时,会抛出重复定义的错误.<br>若无异常,则会根据找到的<em>packgae.json</em>中的<em>main</em>属性找到该包的入口文件,当没有指定入口文件时,默认会查找<em>index.js</em>文件,若<em>index.js</em>文件不存在,则会抛出错误.当没有从<em>package.json</em>文件中找到与之名字对应的模块,才会继续遵循上述规则,即从<em>node_modules</em>文件夹中查询引入的模块.</p>
+<hr>
+<h3 id="查找意外的元凶"><a href="#查找意外的元凶" class="headerlink" title="查找意外的元凶"></a>查找意外的元凶</h3><p>从缓存加载的优化策略使得二次引入时不需要路径分析、问津定位和编译执行的过程，大大提高了再次加载模块时的效率，但是在文件定位的过程中，存在一些细节，主要包括文件扩展名的分析、目录和包的处理，意外产生的真正原因正是出现在这里。</p>
+<ul>
+<li>文件扩展名分析</li>
+</ul>
+<p>require()在分析标识符的过程中，会出现标识符中不包含文件扩展名的情况。CommonJS模块规范也允许在标识符中不包含文件的扩展名，这种情况下，Node会按.js、.json、.node的次序补足扩展名，依次尝试。<br><br>在尝试过程中，需要调用<em>fs</em>模块(node中，在RN中调用<em>fs-extra</em>)同步阻塞式的判断文件是否存在。因为Node是单线程，所以这里是一个会引起性能问题的地方。</p>
+<blockquote>
+<p>Tips:<br>1.如果是.node和.json文件，在传递给require()的标识符中带上扩展名，会加快一点速度。2.配合缓存，可以缓解Node单线程中阻塞式调用的缺陷。</p>
+</blockquote>
+<ul>
+<li>目录分析和包</li>
+</ul>
+<p>在分析标识符的过程中，require()通过分析文件扩展名之后，可能没有找到对应的文件，但却得到一个目录，这在引入自定义模块和逐个模块路径进行查找时会经常出现，此时Node会将目录当做一个包来处理。<br>  <br>  在这个过程中，Node对<em>CommonJS</em>包规范进行了一定程度的支持。(重点来了..敲黑板)首先 Node在当前目录下查找<em>package.json</em>(CommonJS包规范定义的包描述文件)，通过<em>JSON.parse()<em>解析出包描述对象，匹配到</em>name</em>属性相同的包，若存在多个<em>name</em>属性一样的<em>package.json</em>文件时，会抛出重复定义的错误，再从中取出<em>main</em>属性指定指定的文件路径进行定位。如果文件名缺少扩展名，将会进入扩展名分析步骤。<br>    <br>  而如果<em>main</em>属性没有指定包入口文件，或者压根没有<em>package.json</em>文件，Node会将index当做默认文件名，然后依次查找index.js、index.node、index.json。<br>  <br>  如果在目录分析的过程中没有定位成功任何文件，则自定义模块进入下一个模块路径进行查找。如果模块路径数组都被遍历完毕(即按照递归依次向父级查询完毕)，依然没有查找到目标文件，则会抛出查找失败的异常。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>了解一下<a href="'https://docs.npmjs.com/cli/v6/configuring-npm/package-json'">package.json</a>，该文件中最重要的是两个字段<em>name</em>和<em>version</em>，当你想发布一个可以供其他人使用的包到npm仓库时，这两个属性结合在一起会生成一个唯一标识，调用方可以根据这个标识找到指定的库以及对应的版本.<br>分析完之后，可以知道这个意外发生的原因是由于CommonJS模块规范导致的，谨记！</p>
 </section>
     <!-- Tags START -->
     
@@ -278,7 +290,7 @@
   <div class="toc-main">
     <strong class="toc-title">目录</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-nav-text">简介</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E8%A7%84%E5%88%99"><span class="toc-nav-text">规则</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%84%8F%E5%A4%96"><span class="toc-nav-text">意外</span></a></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%84%8F%E5%A4%96"><span class="toc-nav-text">意外</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-nav-text">简介</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E8%A7%84%E5%88%99"><span class="toc-nav-text">规则</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%9F%A5%E6%89%BE%E6%84%8F%E5%A4%96%E7%9A%84%E5%85%83%E5%87%B6"><span class="toc-nav-text">查找意外的元凶</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-nav-text">总结</span></a></li></ol>
     
   </div>
 </aside>
