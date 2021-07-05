@@ -210,7 +210,7 @@
 <li>目录分析和包</li>
 </ul>
 <p>在分析标识符的过程中，require()通过分析文件扩展名之后，可能没有找到对应的文件，但却得到一个目录，这在引入自定义模块和逐个模块路径进行查找时会经常出现，此时Node会将目录当做一个包来处理。<br>  <br>  在这个过程中，Node对<em>CommonJS</em>包规范进行了一定程度的支持。(重点来了..敲黑板)首先 Node在当前目录下查找<em>package.json</em>(CommonJS包规范定义的包描述文件)，通过<em>JSON.parse()<em>解析出包描述对象，匹配到</em>name</em>属性相同的包，若存在多个<em>name</em>属性一样的<em>package.json</em>文件时，会抛出重复定义的错误，再从中取出<em>main</em>属性指定指定的文件路径进行定位。如果文件名缺少扩展名，将会进入扩展名分析步骤。<br>    <br>  而如果<em>main</em>属性没有指定包入口文件，或者压根没有<em>package.json</em>文件，Node会将index当做默认文件名，然后依次查找index.js、index.node、index.json。<br>  <br>  如果在目录分析的过程中没有定位成功任何文件，则自定义模块进入下一个模块路径进行查找。如果模块路径数组都被遍历完毕(即按照递归依次向父级查询完毕)，依然没有查找到目标文件，则会抛出查找失败的异常。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>了解一下<a href="'https://docs.npmjs.com/cli/v6/configuring-npm/package-json'">package.json</a>，该文件中最重要的是两个字段<em>name</em>和<em>version</em>，当你想发布一个可以供其他人使用的包到npm仓库时，这两个属性结合在一起会生成一个唯一标识，调用方可以根据这个标识找到指定的库以及对应的版本.<br>分析完之后，可以知道这个意外发生的原因是由于CommonJS模块规范导致的，谨记！</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>分析完之后，可以知道这个意外发生的原因是由于NodeJS对CommonJS模块规范的支持，导致在目录分析时，会先去查找package.json文件导致的，谨记！</p>
 </section>
     <!-- Tags START -->
     
