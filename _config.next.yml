@@ -1,0 +1,21 @@
+scheme: Pisces
+darkmode: false
+
+menu:
+  home: / || fa fa-home
+  archives: /archives/ || fa fa-archive
+  categories: /categories/ || fa fa-th
+  tags: /tags/ || fa fa-tags
+
+social:
+  GitHub: https://github.com/gitfdy || fab fa-github
+  E-Mail: mailto:gitfdy@example.com || fa fa-envelope
+
+footer:
+  since: 2026
+
+post_meta:
+  item_text: true
+
+local_search:
+  enable: true
